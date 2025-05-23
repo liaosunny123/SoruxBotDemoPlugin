@@ -46,7 +46,8 @@ public class YiYanController: PluginController
             chain.Text("   ---" + model.from_who);
         }
 
-        _bot.QqSendFriendMessage(chain.Build(), context.BotAccount);
+        var newctx = MessageContextHelper.WithNewMessageChain(context, chain.Build());
+        _bot.SendMessage(newctx);
         
         return PluginFlag.MsgIntercepted;
     }
