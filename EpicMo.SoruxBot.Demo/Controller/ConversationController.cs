@@ -125,7 +125,7 @@ public class ConversationController(ILoggerService loggerService, ICommonApi bot
 					conversation
 				);
 				
-				var resp = _client.Execute(req);
+				var resp = _client.Execute(req, Method.Post);
 				if(resp.StatusCode == HttpStatusCode.OK)
 				{
 					loggerService.Info("ChatGPTQQBot-Chat", "Successfully get response");
@@ -170,6 +170,9 @@ public class ConversationController(ILoggerService loggerService, ICommonApi bot
         var req = new RestRequest()
             .AddHeader("Authorization", $"Bearer {token}")
             .AddHeader("Content-Type", "application/json");
+        
+        req.Method = Method.Post;
+        
         return req;
     }
 }
