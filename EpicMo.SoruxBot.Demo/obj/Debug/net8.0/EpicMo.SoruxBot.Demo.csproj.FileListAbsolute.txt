@@ -10,3 +10,4 @@
 /Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/obj/Debug/net8.0/refint/EpicMo.SoruxBot.Demo.dll
 /Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/obj/Debug/net8.0/EpicMo.SoruxBot.Demo.pdb
 /Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/obj/Debug/net8.0/ref/EpicMo.SoruxBot.Demo.dll
+/Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/obj/Debug/net8.0/EpicMo.SoruxBot.Demo.sourcelink.json

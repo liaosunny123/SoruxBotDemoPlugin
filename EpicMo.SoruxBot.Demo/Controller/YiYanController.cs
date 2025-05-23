@@ -62,7 +62,7 @@ public class YiYanController: PluginController
             request.AddQueryParameter("c", type);
         }
         var result = _client.Execute(request);
-        YiYan model = JsonConvert.DeserializeObject<YiYan>(result.Content!)!;
+        var model = JsonConvert.DeserializeObject<YiYan>(result.Content!)!;
 
         var chain = QqMessageBuilder.GroupMessage(context.TriggerPlatformId)
             .Text(model.hitokoto);
@@ -71,8 +71,11 @@ public class YiYanController: PluginController
         {
             chain.Text("   ---" + model.from_who);
         }
-
-        _bot.QqSendGroupMessage(chain.Build(), context.BotAccount);
+        
+        _bot.QqSendGroupMessage(
+            chain.Build(), 
+            context.BotAccount
+        );
         return PluginFlag.MsgIntercepted;
     }
 }
