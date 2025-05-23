@@ -64,7 +64,7 @@ public class YiYanController: PluginController
         var result = _client.Execute(request);
         YiYan model = JsonConvert.DeserializeObject<YiYan>(result.Content!)!;
 
-        var chain = QqMessageBuilder.PrivateMessage(context.TriggerId)
+        var chain = QqMessageBuilder.GroupMessage(context.TriggerPlatformId)
             .Text(model.hitokoto);
         
         if (!string.IsNullOrEmpty(model.from_who))
