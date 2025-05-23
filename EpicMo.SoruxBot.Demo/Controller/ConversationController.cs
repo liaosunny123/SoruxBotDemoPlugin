@@ -32,7 +32,7 @@ public class ConversationController(ILoggerService loggerService, ICommonApi bot
                     .Text("设置成功！")
                     .Build();
                 
-                _bot.QqSendGroupMessage(chain, context.BotAccount);
+                _bot.QqSendFriendMessage(chain, context.BotAccount);
                 break;
             }
             default:
@@ -42,7 +42,7 @@ public class ConversationController(ILoggerService loggerService, ICommonApi bot
                     .Text("你好，请输入正确的指令：grok set <token>")
                     .Build();
                 
-                _bot.QqSendGroupMessage(chain, context.BotAccount);
+                _bot.QqSendFriendMessage(chain, context.BotAccount);
                 break;
             }
         }
@@ -58,7 +58,7 @@ public class ConversationController(ILoggerService loggerService, ICommonApi bot
             _bot.QqSendGroupMessage(
                 QqMessageBuilder
                     .GroupMessage(context.TriggerPlatformId)
-                    .Text("你好，ChatGPT AI 在未对话时只能运行输入启动对话指令：#grok start")
+                    .Text("你好，Grok AI 在未对话时只能运行输入启动对话指令：#grok start")
                     .Build(), 
                     context.BotAccount
                 );
@@ -85,7 +85,6 @@ public class ConversationController(ILoggerService loggerService, ICommonApi bot
         }
 
         // 开始对话
-        var loop = true;
         var conversation = new Conversation(model);
         
         _bot.QqSendGroupMessage(
@@ -98,8 +97,11 @@ public class ConversationController(ILoggerService loggerService, ICommonApi bot
 
         do
         {
+	        loggerService.Info("ChatGPTQQBot-Chat", "正在等待用户的回答：" + context.TriggerId +" , 平台是：" + context.TriggerPlatformId);
 	        var msg = bot.QqReadNextGroupMessageAsync(context.TriggerId, context.TriggerPlatformId).Result;
-			
+	        
+	        loggerService.Info("ChatGPTQQBot-Chat", "用户的回答是：" + msg?.MessageChain?.ToString() + " , 平台是：" + context.TriggerPlatformId);
+	        
 	        if(msg != null)
 			{
 				var userMessage = new Message("user",
@@ -129,8 +131,7 @@ public class ConversationController(ILoggerService loggerService, ICommonApi bot
 					loggerService.Info("ChatGPTQQBot-Chat", "Successfully get response");
 					var rep = JsonNode.Parse(resp.Content!)!;
 
-					var reply = new Message("assistant",
-						rep["choices"].AsArray()[0]["message"]["content"].ToString());
+					var reply = new Message("assistant", rep["choices"].AsArray()[0]["message"]["content"].ToString());
 					conversation.Messages.Add(reply);
 					
 					if (conversation.Messages.Count > 2 * MaxConversationCount)
@@ -160,7 +161,7 @@ public class ConversationController(ILoggerService loggerService, ICommonApi bot
 						context.BotAccount);
 				}
 			}
-        } while (loop);
+        } while (true);
         return PluginFlag.MsgIntercepted;
     }
 
