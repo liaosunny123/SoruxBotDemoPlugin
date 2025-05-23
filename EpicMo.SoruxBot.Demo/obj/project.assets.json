@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "GenericMusicClient/1.0.3": {
+        "type": "package",
+        "dependencies": {
+          "RestSharp": "109.0.0-preview.1"
+        },
+        "compile": {
+          "lib/net6.0/GenericMusicClient.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/GenericMusicClient.dll": {}
+        }
+      },
       "Microsoft.Bcl.AsyncInterfaces/9.0.5": {
         "type": "package",
         "compile": {
@@ -71,6 +83,18 @@
     }
   },
   "libraries": {
+    "GenericMusicClient/1.0.3": {
+      "sha512": "ZgH3MKAHllDO3zVkHx2ayrF2PqGhCdLVH47AitaMbL2Fl9MceWVZLFP2k8vCC1+9dCH9AzK+at/t0JlmNfODfw==",
+      "type": "package",
+      "path": "genericmusicclient/1.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "genericmusicclient.1.0.3.nupkg.sha512",
+        "genericmusicclient.nuspec",
+        "lib/net6.0/GenericMusicClient.dll"
+      ]
+    },
     "Microsoft.Bcl.AsyncInterfaces/9.0.5": {
       "sha512": "eNQDjbtFj8kOLxbckCbn2JXTsnzK8+xkA4jg7NULO9jhIvlOSngC9BFzmiqVPpw1INQaP1pQ3YteY2XhfWNjtQ==",
       "type": "package",
@@ -179,6 +203,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "GenericMusicClient >= 1.0.3",
       "Microsoft.Bcl.AsyncInterfaces >= 9.0.5",
       "RestSharp >= 112.1.0",
       "SoruxBot.SDK.QQ >= 1.0.5"
@@ -227,6 +252,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "GenericMusicClient": {
+            "target": "Package",
+            "version": "[1.0.3, )"
+          },
           "Microsoft.Bcl.AsyncInterfaces": {
             "target": "Package",
             "version": "[9.0.5, )"

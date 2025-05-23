@@ -1,6 +1,7 @@
 /Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/bin/Release/net8.0/publish/EpicMo.SoruxBot.Demo.dll
 /Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/bin/Release/net8.0/publish/EpicMo.SoruxBot.Demo.deps.json
 /Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/bin/Release/net8.0/publish/EpicMo.SoruxBot.Demo.pdb
+/Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/bin/Release/net8.0/publish/GenericMusicClient.dll
 /Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/bin/Release/net8.0/publish/Microsoft.Bcl.AsyncInterfaces.dll
 /Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/bin/Release/net8.0/publish/Newtonsoft.Json.dll
 /Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/bin/Release/net8.0/publish/RestSharp.dll

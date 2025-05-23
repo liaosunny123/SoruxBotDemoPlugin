@@ -8,12 +8,24 @@
     ".NETCoreApp,Version=v8.0": {
       "EpicMo.SoruxBot.Demo/1.0.0": {
         "dependencies": {
+          "GenericMusicClient": "1.0.3",
           "Microsoft.Bcl.AsyncInterfaces": "9.0.5",
           "RestSharp": "112.1.0",
           "SoruxBot.SDK.QQ": "1.0.5"
         },
         "runtime": {
           "EpicMo.SoruxBot.Demo.dll": {}
+        }
+      },
+      "GenericMusicClient/1.0.3": {
+        "dependencies": {
+          "RestSharp": "112.1.0"
+        },
+        "runtime": {
+          "lib/net6.0/GenericMusicClient.dll": {
+            "assemblyVersion": "1.0.3.0",
+            "fileVersion": "1.0.3.0"
+          }
         }
       },
       "Microsoft.Bcl.AsyncInterfaces/9.0.5": {
@@ -69,6 +81,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "GenericMusicClient/1.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZgH3MKAHllDO3zVkHx2ayrF2PqGhCdLVH47AitaMbL2Fl9MceWVZLFP2k8vCC1+9dCH9AzK+at/t0JlmNfODfw==",
+      "path": "genericmusicclient/1.0.3",
+      "hashPath": "genericmusicclient.1.0.3.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/9.0.5": {
       "type": "package",
