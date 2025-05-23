@@ -1,0 +1,12 @@
+/Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/bin/Release/net8.0/EpicMo.SoruxBot.Demo.deps.json
+/Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/bin/Release/net8.0/EpicMo.SoruxBot.Demo.dll
+/Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/bin/Release/net8.0/EpicMo.SoruxBot.Demo.pdb
+/Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/obj/Release/net8.0/EpicMo.SoruxBot.Demo.csproj.AssemblyReference.cache
+/Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/obj/Release/net8.0/EpicMo.SoruxBot.Demo.GeneratedMSBuildEditorConfig.editorconfig
+/Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/obj/Release/net8.0/EpicMo.SoruxBot.Demo.AssemblyInfoInputs.cache
+/Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/obj/Release/net8.0/EpicMo.SoruxBot.Demo.AssemblyInfo.cs
+/Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/obj/Release/net8.0/EpicMo.SoruxBot.Demo.csproj.CoreCompileInputs.cache
+/Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/obj/Release/net8.0/EpicMo.SoruxBot.Demo.dll
+/Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/obj/Release/net8.0/refint/EpicMo.SoruxBot.Demo.dll
+/Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/obj/Release/net8.0/EpicMo.SoruxBot.Demo.pdb
+/Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/obj/Release/net8.0/ref/EpicMo.SoruxBot.Demo.dll

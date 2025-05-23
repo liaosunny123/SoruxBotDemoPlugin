@@ -1,0 +1,109 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "EpicMo.SoruxBot.Demo/1.0.0": {
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "9.0.5",
+          "RestSharp": "112.1.0",
+          "SoruxBot.SDK.QQ": "1.0.5"
+        },
+        "runtime": {
+          "EpicMo.SoruxBot.Demo.dll": {}
+        }
+      },
+      "Microsoft.Bcl.AsyncInterfaces/9.0.5": {
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {
+            "assemblyVersion": "9.0.0.5",
+            "fileVersion": "9.0.525.21509"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.3": {
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.3.27908"
+          }
+        }
+      },
+      "RestSharp/112.1.0": {
+        "runtime": {
+          "lib/net8.0/RestSharp.dll": {
+            "assemblyVersion": "112.1.0.0",
+            "fileVersion": "112.1.0.0"
+          }
+        }
+      },
+      "SoruxBot.SDK/1.1.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "runtime": {
+          "lib/net8.0/SoruxBot.SDK.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
+          }
+        }
+      },
+      "SoruxBot.SDK.QQ/1.0.5": {
+        "dependencies": {
+          "SoruxBot.SDK": "1.1.0"
+        },
+        "runtime": {
+          "lib/net8.0/SoruxBot.SDK.QQ.dll": {
+            "assemblyVersion": "1.0.5.0",
+            "fileVersion": "1.0.5.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "EpicMo.SoruxBot.Demo/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Bcl.AsyncInterfaces/9.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eNQDjbtFj8kOLxbckCbn2JXTsnzK8+xkA4jg7NULO9jhIvlOSngC9BFzmiqVPpw1INQaP1pQ3YteY2XhfWNjtQ==",
+      "path": "microsoft.bcl.asyncinterfaces/9.0.5",
+      "hashPath": "microsoft.bcl.asyncinterfaces.9.0.5.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "path": "newtonsoft.json/13.0.3",
+      "hashPath": "newtonsoft.json.13.0.3.nupkg.sha512"
+    },
+    "RestSharp/112.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bOUGNZqhhv/QeCXHTKEUil846yBjwWXpzPKjO67kFvaAOoF361z7jLY5BMnuZ6WD2WQRA750sNMcK7MSPCQ5Mg==",
+      "path": "restsharp/112.1.0",
+      "hashPath": "restsharp.112.1.0.nupkg.sha512"
+    },
+    "SoruxBot.SDK/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TVMobKUC+kZwLu0nFEB1AoZ6dOM7FAGt0iAfdyUScHj2bXCX+9cF8YKWbC1ZUnE5rLP8vQ6+Nsd9jO1eD5yxig==",
+      "path": "soruxbot.sdk/1.1.0",
+      "hashPath": "soruxbot.sdk.1.1.0.nupkg.sha512"
+    },
+    "SoruxBot.SDK.QQ/1.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Z5SDgSFPoY4E/fRyyeyRAWfbLtcf98AebkKqvRYrCxU55e7J6gERg0BxBtxjgjJvVjB+d9BnN527hX3Bxb1cmA==",
+      "path": "soruxbot.sdk.qq/1.0.5",
+      "hashPath": "soruxbot.sdk.qq.1.0.5.nupkg.sha512"
+    }
+  }
+}
