@@ -26,7 +26,7 @@ public class YiYanController: PluginController
 
     [MessageEvent(MessageType.PrivateMessage)]
     [Command(CommandPrefixType.Single,"saying <type>")]
-    public PluginFlag YiYanGet(MessageContext context,string? type)
+    public PluginFlag YiYanFriendGet(MessageContext context,string? type)
     {
         var request = new RestRequest();
         
@@ -46,9 +46,33 @@ public class YiYanController: PluginController
             chain.Text("   ---" + model.from_who);
         }
 
-        var newctx = MessageContextHelper.WithNewMessageChain(context, chain.Build());
-        _bot.SendMessage(newctx);
+        _bot.QqSendFriendMessage(chain.Build(), context.BotAccount);
+        return PluginFlag.MsgIntercepted;
+    }
+    
+    [MessageEvent(MessageType.GroupMessage)]
+    [Command(CommandPrefixType.Single,"saying <type>")]
+    public PluginFlag YiYanGroupGet(MessageContext context,string? type)
+    {
+        var request = new RestRequest();
         
+        request.Method = Method.Get;
+        if (!string.IsNullOrEmpty(type))
+        {
+            request.AddQueryParameter("c", type);
+        }
+        var result = _client.Execute(request);
+        YiYan model = JsonConvert.DeserializeObject<YiYan>(result.Content!)!;
+
+        var chain = QqMessageBuilder.PrivateMessage(context.TriggerId)
+            .Text(model.hitokoto);
+        
+        if (!string.IsNullOrEmpty(model.from_who))
+        {
+            chain.Text("   ---" + model.from_who);
+        }
+
+        _bot.QqSendGroupMessage(chain.Build(), context.BotAccount);
         return PluginFlag.MsgIntercepted;
     }
 }
