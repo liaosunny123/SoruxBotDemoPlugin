@@ -72,7 +72,7 @@ public class ConversationController(ILoggerService loggerService, ICommonApi bot
             _bot.QqSendGroupMessage(
                 QqMessageBuilder
                     .GroupMessage(context.TriggerPlatformId)
-                    .Text("你好，全局 Grok 密钥暂时未设置！")
+                    .Text("你好，全局 AI 密钥暂时未设置！")
                     .Build(), 
                 context.BotAccount
             );
