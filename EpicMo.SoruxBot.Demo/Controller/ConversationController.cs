@@ -16,10 +16,10 @@ public class ConversationController(ILoggerService loggerService, ICommonApi bot
 {
     private readonly ICommonApi _bot = bot;
     private readonly RestClient _client = new("https://api.soruxgpt.com/v1/chat/completions");
-	private const int MaxConversationCount = 10;
+	private const int MaxConversationCount = 20;
 
 	[MessageEvent(MessageType.PrivateMessage)]
-    [Command(CommandPrefixType.Single, "grok <action> <param>")]
+    [Command(CommandPrefixType.Single, "ai <action> <param>")]
     public PluginFlag SetUserToken(MessageContext context, string action, string param)
     {
         switch (action)
@@ -39,7 +39,7 @@ public class ConversationController(ILoggerService loggerService, ICommonApi bot
             {
                 var chain = QqMessageBuilder
                     .PrivateMessage(context.TriggerId)
-                    .Text("你好，请输入正确的指令：grok set <token>")
+                    .Text("你好，请输入正确的指令：ai set <token>")
                     .Build();
                 
                 _bot.QqSendFriendMessage(chain, context.BotAccount);
@@ -50,7 +50,7 @@ public class ConversationController(ILoggerService loggerService, ICommonApi bot
     }
 
     [MessageEvent(MessageType.GroupMessage)]
-    [Command(CommandPrefixType.Single, "grok <action> [model]")]
+    [Command(CommandPrefixType.Single, "ai <action> [model]")]
     public PluginFlag Chat(MessageContext context, string action, string? model)
     {
         if (action != "start")
@@ -58,7 +58,7 @@ public class ConversationController(ILoggerService loggerService, ICommonApi bot
             _bot.QqSendGroupMessage(
                 QqMessageBuilder
                     .GroupMessage(context.TriggerPlatformId)
-                    .Text("你好，Grok AI 在未对话时只能运行输入启动对话指令：#grok start")
+                    .Text("你好，SoruxBot AI 在未对话时只能运行输入启动对话指令：#ai start")
                     .Build(), 
                     context.BotAccount
                 );
@@ -79,10 +79,8 @@ public class ConversationController(ILoggerService loggerService, ICommonApi bot
             return PluginFlag.MsgIntercepted;
         }
 
-        if (string.IsNullOrEmpty(model))
-        {
-            model = "grok-3";
-        }
+        // 避免修改模型
+        model = "grok-3";
 
         // 开始对话
         var conversation = new Conversation(model);
@@ -91,23 +89,30 @@ public class ConversationController(ILoggerService loggerService, ICommonApi bot
             QqMessageBuilder
                 .GroupMessage(context.TriggerPlatformId)
                 .Text("您好，有什么是 SoruxBot 可以帮助到您的吗？")
+                .Text("\n如果需要更多的模型支持，请前往：www。soruxgpt。com 哦～")
+                .Text("\n此外，您可以随时输入\"#ai stop\"退出对话")
                 .Build(), 
             context.BotAccount
         );
 
+        conversation.Messages.Add(new Message(
+	        "system", 
+	        "你是由 SoruxBot 开发和提供的 AI 聊天助手，旨在为用户提供高质量的对话体验。请遵循以下规则：\n" +
+	        "1. 记住你目前正在 QQ 平台上运行，在 SoruxBot 框架上运行\n" +
+	        "2. 项目的地址是：https://github.com/SoruxBot-v2/SoruxBot\n" +
+	        "3. 你的名字是白猫助手\n"
+	        ));
+        
         do
         {
-	        loggerService.Info("ChatGPTQQBot-Chat", "正在等待用户的回答：" + context.TriggerId +" , 平台是：" + context.TriggerPlatformId);
 	        var msg = bot.QqReadNextGroupMessageAsync(context.TriggerId, context.TriggerPlatformId).Result;
-	        
-	        loggerService.Info("ChatGPTQQBot-Chat", "用户的回答是：" + msg?.MessageChain?.ToString() + " , 平台是：" + context.TriggerPlatformId);
 	        
 	        if(msg != null)
 			{
 				var userMessage = new Message("user",
 					msg.MessageChain!.Messages.Select(p => p.ToPreviewText()).Aggregate((t1, t2) => t1 + t2));
 
-				if (userMessage.Content == "#grok stop")
+				if (userMessage.Content == "#ai stop")
 				{
 					bot.QqSendGroupMessage(
 						QqMessageBuilder
