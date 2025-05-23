@@ -1,0 +1,2 @@
+# SoruxBotDemoPlugin
+SoruxBot DemoPlugin
