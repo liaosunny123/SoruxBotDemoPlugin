@@ -169,7 +169,8 @@ public class ConversationController(ILoggerService loggerService, ICommonApi bot
     {
         var req = new RestRequest()
             .AddHeader("Authorization", $"Bearer {token}")
-            .AddHeader("Content-Type", "application/json");
+            .AddHeader("Content-Type", "application/json")
+            .AddHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0");
         
         req.Method = Method.Post;
         

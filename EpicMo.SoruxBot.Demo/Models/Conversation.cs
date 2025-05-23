@@ -1,8 +1,18 @@
+using System.Text.Json.Serialization;
+
 namespace ChatGPTQQBot.Model;
 
-public class Conversation(string model)
+public class Conversation
 {
-    public string Model { get; set; } = model;
+    [JsonPropertyName("model")]
+    public string Model { get; set; }
 
-    public List<Message> Messages { get; } = new();
+    [JsonPropertyName("messages")]
+    public List<Message> Messages { get; set; }
+
+    public Conversation(string model)
+    {
+        Model = model;
+        Messages = new List<Message>();
+    }
 }
