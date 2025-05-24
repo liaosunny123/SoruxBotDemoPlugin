@@ -92,7 +92,7 @@ public class LookUpController(ILoggerService loggerService, ICommonApi bot, IPlu
 	        {
 		        bot.QqSendGroupMessage(QqMessageBuilder
 				        .GroupMessage(context.TriggerPlatformId)
-				        .Text("获取回复失败，错误码：" + resp.StatusCode)
+				        .Text("获取回复失败！错误码：" + resp.StatusCode)
 				        .Build(),
 			        context.BotAccount);
 	        }
@@ -102,7 +102,7 @@ public class LookUpController(ILoggerService loggerService, ICommonApi bot, IPlu
 	        bot.QqSendGroupMessage(
 		        QqMessageBuilder
 			        .GroupMessage(context.TriggerPlatformId)
-			        .Text("提取网页内容失败，请检查链接是否正确，错误信息：" + ex.Message)
+			        .Text("提取网页内容失败！请检查链接是否正确，错误信息：" + ex.Message)
 			        .Build(), 
 		        context.BotAccount
 	        );
