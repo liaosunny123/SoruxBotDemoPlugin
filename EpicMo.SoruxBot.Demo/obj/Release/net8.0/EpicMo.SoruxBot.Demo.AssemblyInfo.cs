@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EpicMo.SoruxBot.Demo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+60670b13f750d61d3d593f55c6a3b77ddb4fd059")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a5d15891d8337c3b9dc755d5ffed40b26a4dd4c3")]
 [assembly: System.Reflection.AssemblyProductAttribute("EpicMo.SoruxBot.Demo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EpicMo.SoruxBot.Demo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
