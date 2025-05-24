@@ -15,8 +15,7 @@ namespace EpicMo.SoruxBot.Demo.Controller;
 
 public class LookUpController(ILoggerService loggerService, ICommonApi bot, IPluginsDataStorage dataStorage) : PluginController
 {
-    private readonly ICommonApi _bot = bot;
-    private readonly RestClient _client = new("https://api.soruxgpt.com/v1/chat/completions");
+	private readonly RestClient _client = new("https://api.soruxgpt.com/v1/chat/completions");
     private readonly WebPageTextExtractor _extractor = new ();
     
     [MessageEvent(MessageType.GroupMessage)]
@@ -27,7 +26,7 @@ public class LookUpController(ILoggerService loggerService, ICommonApi bot, IPlu
         
         if (string.IsNullOrEmpty(token))
         {
-            _bot.QqSendGroupMessage(
+            bot.QqSendGroupMessage(
                 QqMessageBuilder
                     .GroupMessage(context.TriggerPlatformId)
                     .Text("你好，全局 AI 密钥暂时未设置，无法使用 LookUp 功能，请联系管理员设置！")
@@ -36,8 +35,19 @@ public class LookUpController(ILoggerService loggerService, ICommonApi bot, IPlu
             );
             return PluginFlag.MsgIntercepted;
         }
-
-
+        
+        // 检查链接是否有效
+        if (!Uri.IsWellFormedUriString(link, UriKind.Absolute))
+		{
+			bot.QqSendGroupMessage(
+				QqMessageBuilder
+					.GroupMessage(context.TriggerPlatformId)
+					.Text("提供的链接格式不正确，请检查链接是否有效！")
+					.Build(), 
+				context.BotAccount
+			);
+			return PluginFlag.MsgIntercepted;
+		}
         
         try
         {
@@ -72,7 +82,7 @@ public class LookUpController(ILoggerService loggerService, ICommonApi bot, IPlu
 
 		        var reply = new Message("assistant", rep["choices"].AsArray()[0]["message"]["content"].ToString());
 
-		        _bot.QqSendGroupMessage(QqMessageBuilder
+		        bot.QqSendGroupMessage(QqMessageBuilder
 				        .GroupMessage(context.TriggerPlatformId)
 				        .Text(reply.Content)
 				        .Build(),
@@ -80,7 +90,7 @@ public class LookUpController(ILoggerService loggerService, ICommonApi bot, IPlu
 	        }
 	        else
 	        {
-		        _bot.QqSendGroupMessage(QqMessageBuilder
+		        bot.QqSendGroupMessage(QqMessageBuilder
 				        .GroupMessage(context.TriggerPlatformId)
 				        .Text("获取回复失败，错误码：" + resp.StatusCode)
 				        .Build(),
@@ -89,7 +99,7 @@ public class LookUpController(ILoggerService loggerService, ICommonApi bot, IPlu
         }
         catch (Exception ex)
         {
-	        _bot.QqSendGroupMessage(
+	        bot.QqSendGroupMessage(
 		        QqMessageBuilder
 			        .GroupMessage(context.TriggerPlatformId)
 			        .Text("提取网页内容失败，请检查链接是否正确，错误信息：" + ex.Message)
