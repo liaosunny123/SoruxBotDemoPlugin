@@ -13,3 +13,22 @@
 
 本插件基于 SoruxBot QQ SDK >= 1.0.6 构建（SoruxBot General SDK >= 1.1.1）。
 
+## 命令
+
+所有命令的前缀均为：#
+
+### 私聊
+
+ai set [token]
+设置当前对话的 token。
+
+saying <type>
+输出一句话，type为类型，可选
+
+### 群聊
+
+ai start
+开始 AI 对话
+
+lookup [link]
+输出一个 Link 对应的关键词和概要信息
