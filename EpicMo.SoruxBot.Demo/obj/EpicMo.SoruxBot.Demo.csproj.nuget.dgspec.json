@@ -13,6 +13,7 @@
         "packagesPath": "/Users/epicmo/.nuget/packages/",
         "outputPath": "/Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/obj/",
         "projectStyle": "PackageReference",
+        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/Users/epicmo/.nuget/NuGet/NuGet.Config"
         ],
@@ -50,6 +51,10 @@
             "Microsoft.Bcl.AsyncInterfaces": {
               "target": "Package",
               "version": "[9.0.5, )"
+            },
+            "Microsoft.Playwright": {
+              "target": "Package",
+              "version": "[1.52.0, )"
             },
             "RestSharp": {
               "target": "Package",
