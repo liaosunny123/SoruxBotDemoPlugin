@@ -77,7 +77,7 @@
           }
         }
       },
-      "SoruxBot.SDK/1.1.0": {
+      "SoruxBot.SDK/1.1.1": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "13.0.3"
@@ -89,10 +89,11 @@
           "lib/net8.0/SoruxBot.SDK.dll": {}
         }
       },
-      "SoruxBot.SDK.QQ/1.0.5": {
+      "SoruxBot.SDK.QQ/1.0.6": {
         "type": "package",
         "dependencies": {
-          "SoruxBot.SDK": "1.1.0"
+          "Newtonsoft.Json": "13.0.3",
+          "SoruxBot.SDK": "1.1.1"
         },
         "compile": {
           "lib/net8.0/SoruxBot.SDK.QQ.dll": {}
@@ -635,27 +636,27 @@
         "restsharp.png"
       ]
     },
-    "SoruxBot.SDK/1.1.0": {
-      "sha512": "TVMobKUC+kZwLu0nFEB1AoZ6dOM7FAGt0iAfdyUScHj2bXCX+9cF8YKWbC1ZUnE5rLP8vQ6+Nsd9jO1eD5yxig==",
+    "SoruxBot.SDK/1.1.1": {
+      "sha512": "yleDWTJX4wkrRhYGLkUY6mwQwKOFuu3JwJZuAi+d7cm6Jg/5InJsYgBYGNwo6pkNEbItyFsQE71Un3UTKXkvPA==",
       "type": "package",
-      "path": "soruxbot.sdk/1.1.0",
+      "path": "soruxbot.sdk/1.1.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net8.0/SoruxBot.SDK.dll",
-        "soruxbot.sdk.1.1.0.nupkg.sha512",
+        "soruxbot.sdk.1.1.1.nupkg.sha512",
         "soruxbot.sdk.nuspec"
       ]
     },
-    "SoruxBot.SDK.QQ/1.0.5": {
-      "sha512": "Z5SDgSFPoY4E/fRyyeyRAWfbLtcf98AebkKqvRYrCxU55e7J6gERg0BxBtxjgjJvVjB+d9BnN527hX3Bxb1cmA==",
+    "SoruxBot.SDK.QQ/1.0.6": {
+      "sha512": "//d8kx1CltVZ1t/DVzWEkvSD21to0vxLlHXUKgHGchtpp/j8/DZlwYo655PFuTioRIG/UxDCyWfW7lo7UoVV7Q==",
       "type": "package",
-      "path": "soruxbot.sdk.qq/1.0.5",
+      "path": "soruxbot.sdk.qq/1.0.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net8.0/SoruxBot.SDK.QQ.dll",
-        "soruxbot.sdk.qq.1.0.5.nupkg.sha512",
+        "soruxbot.sdk.qq.1.0.6.nupkg.sha512",
         "soruxbot.sdk.qq.nuspec"
       ]
     },
@@ -862,7 +863,7 @@
       "Microsoft.Bcl.AsyncInterfaces >= 9.0.5",
       "Microsoft.Playwright >= 1.52.0",
       "RestSharp >= 112.1.0",
-      "SoruxBot.SDK.QQ >= 1.0.5"
+      "SoruxBot.SDK.QQ >= 1.0.6"
     ]
   },
   "packageFolders": {
@@ -877,7 +878,6 @@
       "packagesPath": "/Users/epicmo/.nuget/packages/",
       "outputPath": "/Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/obj/",
       "projectStyle": "PackageReference",
-      "UsingMicrosoftNETSdk": false,
       "configFilePaths": [
         "/Users/epicmo/.nuget/NuGet/NuGet.Config"
       ],
@@ -926,7 +926,7 @@
           },
           "SoruxBot.SDK.QQ": {
             "target": "Package",
-            "version": "[1.0.5, )"
+            "version": "[1.0.6, )"
           }
         },
         "imports": [
@@ -945,7 +945,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/Users/epicmo/.dotnet/sdk/8.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.410/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

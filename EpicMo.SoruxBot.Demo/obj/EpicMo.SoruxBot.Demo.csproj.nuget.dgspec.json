@@ -13,7 +13,6 @@
         "packagesPath": "/Users/epicmo/.nuget/packages/",
         "outputPath": "/Users/epicmo/Project/SoruxBotDemoPlugin/EpicMo.SoruxBot.Demo/obj/",
         "projectStyle": "PackageReference",
-        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/Users/epicmo/.nuget/NuGet/NuGet.Config"
         ],
@@ -62,7 +61,7 @@
             },
             "SoruxBot.SDK.QQ": {
               "target": "Package",
-              "version": "[1.0.5, )"
+              "version": "[1.0.6, )"
             }
           },
           "imports": [
@@ -81,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/Users/epicmo/.dotnet/sdk/8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.410/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

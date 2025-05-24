@@ -14,83 +14,22 @@ public class WebPageTextExtractor
     /// </summary>
     public async Task InitializeAsync()
     {
-        // 确保浏览器已安装
-        await EnsureBrowsersInstalledAsync();
-        
         _playwright = await Playwright.CreateAsync();
+        
+        // Docker 容器中的 Chromium 启动配置
         _browser = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
         {
-            Headless = true, // 无头模式
-            Args = new[] { "--no-sandbox", "--disable-setuid-sandbox" }
+            Headless = true,
+            Args = new[] { 
+                "--no-sandbox", 
+                "--disable-setuid-sandbox",
+                "--disable-dev-shm-usage",
+                "--disable-gpu",
+                "--disable-extensions",
+                "--no-first-run",
+                "--disable-default-apps"
+            }
         });
-    }
-    
-    /// <summary>
-    /// 检查并自动安装浏览器
-    /// </summary>
-    private async Task EnsureBrowsersInstalledAsync()
-    {
-        try
-        {
-            Console.WriteLine("检查浏览器安装状态...");
-            
-            // 尝试创建一个临时的Playwright实例来检查浏览器
-            using var tempPlaywright = await Playwright.CreateAsync();
-            
-            try
-            {
-                // 尝试启动浏览器来检查是否已安装
-                var tempBrowser = await tempPlaywright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
-                {
-                    Headless = true
-                });
-                
-                await tempBrowser.CloseAsync();
-                Console.WriteLine("浏览器已安装，无需下载。");
-                return;
-            }
-            catch (PlaywrightException ex) when (ex.Message.Contains("Executable doesn't exist"))
-            {
-                Console.WriteLine("检测到浏览器未安装，开始自动下载...");
-                await InstallBrowsersAsync();
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"检查浏览器状态时出错: {ex.Message}");
-            Console.WriteLine("尝试安装浏览器...");
-            await InstallBrowsersAsync();
-        }
-    }
-    
-    /// <summary>
-    /// 自动安装Playwright浏览器
-    /// </summary>
-    private async Task InstallBrowsersAsync()
-    {
-        try
-        {
-            Console.WriteLine("正在下载和安装浏览器，这可能需要几分钟时间...");
-            
-            // 使用Microsoft.Playwright的安装程序
-            var exitCode = Microsoft.Playwright.Program.Main(new[] { "install", "chromium" });
-            
-            if (exitCode == 0)
-            {
-                Console.WriteLine("浏览器安装成功！");
-            }
-            else
-            {
-                throw new Exception($"浏览器安装失败，退出代码: {exitCode}");
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"自动安装浏览器失败: {ex.Message}");
-            Console.WriteLine("请手动运行以下命令安装浏览器:");
-            Console.WriteLine("dotnet exec microsoft.playwright.dll install chromium");
-            throw new Exception("浏览器安装失败，请手动安装", ex);
-        }
     }
     
     /// <summary>
@@ -112,7 +51,7 @@ public class WebPageTextExtractor
         {
             // 创建新页面
             page = await _browser.NewPageAsync();
-            
+        
             // 导航到目标URL
             await page.GotoAsync(url, new PageGotoOptions
             {
@@ -121,10 +60,18 @@ public class WebPageTextExtractor
             });
             
             // 等待页面完全加载
-            await page.WaitForLoadStateAsync(LoadState.NetworkIdle, new PageWaitForLoadStateOptions
+            try
             {
-                Timeout = timeout
-            });
+                await page.WaitForLoadStateAsync(LoadState.NetworkIdle, new PageWaitForLoadStateOptions
+                {
+                    Timeout = Math.Min(timeout, 10000) // 最多等待10秒
+                });
+            }
+            catch (TimeoutException)
+            {
+                // 网络空闲等待超时，继续处理
+                Console.WriteLine("网络空闲等待超时，继续处理页面内容");
+            }
             
             // 移除不需要的元素（广告、导航等）
             await RemoveUnwantedElementsAsync(page);
@@ -165,25 +112,38 @@ public class WebPageTextExtractor
     private async Task RemoveUnwantedElementsAsync(IPage page)
     {
         // 移除常见的干扰元素
-        string[] selectors = {
-            "script", "style", "nav", "header", "footer", 
-            ".advertisement", ".ads", ".sidebar", ".menu",
-            "#advertisement", "#ads", "#sidebar", "#menu",
-            "[class*='ad']", "[id*='ad']", "[class*='banner']"
-        };
-        
-        foreach (string selector in selectors)
+        try
         {
-            try
-            {
-                await page.EvaluateAsync($@"
-                    document.querySelectorAll('{selector}').forEach(el => el.remove())
-                ");
-            }
-            catch
-            {
-                // 忽略移除失败的情况
-            }
+            await page.EvaluateAsync(@"
+                // 移除脚本和样式
+                document.querySelectorAll('script, style, noscript').forEach(el => el.remove());
+                
+                // 移除导航和页脚
+                document.querySelectorAll('nav, header, footer').forEach(el => el.remove());
+                
+                // 移除广告相关元素
+                const adSelectors = [
+                    '[class*=""ad""]', '[id*=""ad""]', '[class*=""banner""]',
+                    '.advertisement', '.ads', '.sidebar', '.menu',
+                    '#advertisement', '#ads', '#sidebar', '#menu'
+                ];
+                
+                adSelectors.forEach(selector => {
+                    try {
+                        document.querySelectorAll(selector).forEach(el => {
+                            if (el.offsetHeight < 100 || el.innerText.length < 50) {
+                                el.remove();
+                            }
+                        });
+                    } catch (e) {
+                        // 忽略选择器错误
+                    }
+                });
+            ");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"移除不需要元素时出错: {ex.Message}");
         }
     }
     
@@ -195,7 +155,7 @@ public class WebPageTextExtractor
         // 尝试多种选择器来获取主要内容
         string[] contentSelectors = {
             "article", "main", "[role='main']", ".content", "#content",
-            ".post", ".entry", ".article", "body"
+            ".post", ".entry", ".article", ".container", ".wrapper"
         };
         
         foreach (string selector in contentSelectors)
@@ -212,8 +172,9 @@ public class WebPageTextExtractor
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine($"尝试选择器 {selector} 时出错: {ex.Message}");
                 continue;
             }
         }
@@ -225,7 +186,8 @@ public class WebPageTextExtractor
         }
         catch
         {
-            return await page.TextContentAsync("body") ?? "";
+            var textContent = await page.TextContentAsync("body");
+            return textContent ?? "";
         }
     }
     

@@ -11,7 +11,7 @@
           "DotNetEnv": "3.0.0",
           "Microsoft.Build": "17.10.0-preview-24081-01",
           "Microsoft.Build.Locator": "1.7.8",
-          "SoruxBot.SDK": "1.1.0"
+          "SoruxBot.SDK": "1.1.1"
         },
         "runtime": {
           "SoruxBotPublishCli.dll": {}
@@ -204,14 +204,14 @@
       "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {},
       "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {},
       "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {},
-      "SoruxBot.SDK/1.1.0": {
+      "SoruxBot.SDK/1.1.1": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
           "lib/net8.0/SoruxBot.SDK.dll": {
-            "assemblyVersion": "1.1.0.0",
-            "fileVersion": "1.1.0.0"
+            "assemblyVersion": "1.1.1.0",
+            "fileVersion": "1.1.1.0"
           }
         }
       },
@@ -1035,12 +1035,12 @@
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.2",
       "hashPath": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512"
     },
-    "SoruxBot.SDK/1.1.0": {
+    "SoruxBot.SDK/1.1.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-TVMobKUC+kZwLu0nFEB1AoZ6dOM7FAGt0iAfdyUScHj2bXCX+9cF8YKWbC1ZUnE5rLP8vQ6+Nsd9jO1eD5yxig==",
-      "path": "soruxbot.sdk/1.1.0",
-      "hashPath": "soruxbot.sdk.1.1.0.nupkg.sha512"
+      "sha512": "sha512-yleDWTJX4wkrRhYGLkUY6mwQwKOFuu3JwJZuAi+d7cm6Jg/5InJsYgBYGNwo6pkNEbItyFsQE71Un3UTKXkvPA==",
+      "path": "soruxbot.sdk/1.1.1",
+      "hashPath": "soruxbot.sdk.1.1.1.nupkg.sha512"
     },
     "Sprache/2.3.1": {
       "type": "package",
