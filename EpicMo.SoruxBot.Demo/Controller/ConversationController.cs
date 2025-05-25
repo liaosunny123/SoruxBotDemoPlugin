@@ -216,16 +216,9 @@ public class ConversationController(ILoggerService loggerService, ICommonApi bot
     }
 
     [MessageEvent(MessageType.PrivateMessage)]
-    [Command(CommandPrefixType.None, "")]
+    [Command(CommandPrefixType.None, "ai <action>")]
     public PluginFlag ChatInPrivate(MessageContext context)
     {
-	    var state = dataStorage.GetStringSettings("grok", context.TriggerId);
-
-	    if (!string.IsNullOrEmpty(state) && state != "chatting")
-	    {
-		    return PluginFlag.MsgPassed;
-	    }
-
 		var token = dataStorage.GetStringSettings("grok", "token");
         
         if (string.IsNullOrEmpty(token))
@@ -342,22 +335,6 @@ public class ConversationController(ILoggerService loggerService, ICommonApi bot
 							context.BotAccount);
 				}
 			}
-	        else
-	        {
-
-		        var exit = QqMessageBuilder
-			        .PrivateMessage(context.TriggerId);
-		        
-		        if (uint.TryParse(context.TriggerId, out var id))
-		        {
-			        exit.Mention(null, id);
-		        }
-
-		        var chain = exit.Text("看起来你好像走远了，拜拜！").Build();
-		        
-		        _bot.QqSendFriendMessage(chain, context.BotAccount);
-		        break;
-	        }
         } while (true);
         return PluginFlag.MsgIntercepted;
     }
